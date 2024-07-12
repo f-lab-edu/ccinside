@@ -9,5 +9,7 @@ public interface TrendingPostUseCase {
 
   List<PostData> getTrendingPosts();
 
-  void updateTrendingPosts();
+  void addOnePostIntoTrendingList(Long postNo);
+
+  void deleteTrendingPost(Long postNo);
 }

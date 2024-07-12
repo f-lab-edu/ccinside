@@ -5,9 +5,11 @@ import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,9 +33,15 @@ class TrendingPostController {
     return trendingPostUseCase.getTrendingPosts();
   }
 
-  @PatchMapping("/posts")
+  @PutMapping("/posts/{postNo}")
   @ResponseStatus(HttpStatus.OK)
-  void updateTrendingPosts() {
-    trendingPostUseCase.updateTrendingPosts();
+  void addOnePostIntoTrendingList(@PathVariable Long postNo) {
+    trendingPostUseCase.addOnePostIntoTrendingList(postNo);
+  }
+
+  @DeleteMapping("/posts/{postNo}")
+  @ResponseStatus(HttpStatus.OK)
+  void deleteTrendingPost(@PathVariable Long postNo) {
+    trendingPostUseCase.deleteTrendingPost(postNo);
   }
 }
