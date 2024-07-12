@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TrendingPostService implements TrendingPostUseCase {
+class TrendingPostService implements TrendingPostUseCase {
 
   @Override
   public void publishNewTrendingPosts() {
