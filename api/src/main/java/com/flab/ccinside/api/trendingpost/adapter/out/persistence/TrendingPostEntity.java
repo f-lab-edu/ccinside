@@ -1,5 +1,6 @@
 package com.flab.ccinside.api.trendingpost.adapter.out.persistence;
 
+import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,10 +9,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "post")
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TrendingPostEntity {
@@ -24,6 +27,9 @@ public class TrendingPostEntity {
   private String title;
 
   @Column
+  private Long authorNo;
+
+  @Column
   private Long galleryNo;
 
   @Column
@@ -31,6 +37,9 @@ public class TrendingPostEntity {
 
   @Column
   private Integer commentCount;
+
+  @Column
+  private UnitTime unitTime;
 
   @Column
   private LocalDateTime createdAt;

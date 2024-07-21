@@ -32,10 +32,10 @@ class TrendingPostController {
     trendingPostUseCase.publishNewTrendingPosts(command);
   }
 
-  @GetMapping("/posts")
+  @GetMapping("/{galleryNo}/posts")
   @ResponseStatus(HttpStatus.OK)
-  List<TrendingPostData> getTrendingPosts() {
-    return trendingPostUseCase.getTrendingPosts();
+  List<TrendingPostData> getTrendingPosts(@PathVariable Long galleryNo, @RequestParam(defaultValue = "ONE_HOUR") UnitTime unitTime) {
+    return trendingPostUseCase.getTrendingPosts(galleryNo, unitTime);
   }
 
   @PutMapping("/posts/{postNo}")
