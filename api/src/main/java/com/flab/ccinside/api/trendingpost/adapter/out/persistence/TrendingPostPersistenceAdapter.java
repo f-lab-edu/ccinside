@@ -1,7 +1,8 @@
-package com.flab.ccinside.api.trendingpost.adapter.out;
+package com.flab.ccinside.api.trendingpost.adapter.out.persistence;
 
 import com.flab.ccinside.api.trendingpost.application.port.out.PublishTrendingPostPort;
 import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 
@@ -12,7 +13,8 @@ class TrendingPostPersistenceAdapter implements PublishTrendingPostPort {
   private final TrendingPostMapper trendingPostMapper;
 
   @Override
-  public void publishTrendingPosts(TrendingPost trendingPost) {
-    // 맵퍼로 JPA Entity로 맵핑하여 저장
+  public void publishTrendingPosts(List<TrendingPost> trendingPost) {
+    var entities = trendingPostMapper.mapToEntity(trendingPost);
+    trendingPostRepository.saveAll(entities);
   }
 }

@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.adapter.out;
+package com.flab.ccinside.api.trendingpost.adapter.out.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "post")
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrendingPostJpaEntity {
+public class TrendingPostEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +27,12 @@ public class TrendingPostJpaEntity {
   private Long galleryNo;
 
   @Column
-  private LocalDateTime createdAt;
+  private Integer postViews;
 
   @Column
-  private String thumbnailUrl;
+  private Integer commentCount;
+
+  @Column
+  private LocalDateTime createdAt;
+
 }

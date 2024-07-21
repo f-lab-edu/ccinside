@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface PublishTrendingPostPort {
 
-  void publishTrendingPosts(TrendingPost trendingPost);
+  void publishTrendingPosts(List<TrendingPost> trendingPost);
 
 }

@@ -1,13 +1,13 @@
 package com.flab.ccinside.api.trendingpost.application.port.in;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
+import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostData;
 import java.util.List;
 
 public interface TrendingPostUseCase {
 
-  void publishNewTrendingPosts();
+  void publishNewTrendingPosts(PublishTrendingPostCommand command);
 
-  List<PostData> getTrendingPosts();
+  List<TrendingPostData> getTrendingPosts();
 
   void addOnePostIntoTrendingList(Long postNo);
 

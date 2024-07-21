@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.flab.ccinside.api.trendingpost.application.port.in.TrendingPostUseCase;
-import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
+import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostData;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -33,16 +33,16 @@ class TrendingPostControllerTest {
   TrendingPostUseCase trendingPostUseCase;
 
   ObjectMapper mapper;
-  List<PostData> expectedPosts;
+  List<TrendingPostData> expectedPosts;
 
   @BeforeEach
   void setUp() {
     mapper = new ObjectMapper();
     mapper.registerModule(new JavaTimeModule());
     expectedPosts = List.of(
-        new PostData(
+        new TrendingPostData(
             1L, "title1", 10, 1L, "gallery1", LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME), "url1"),
-        new PostData(
+        new TrendingPostData(
             2L, "title2", 20, 2L, "gallery2", LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME), "url2")
     );
   }
