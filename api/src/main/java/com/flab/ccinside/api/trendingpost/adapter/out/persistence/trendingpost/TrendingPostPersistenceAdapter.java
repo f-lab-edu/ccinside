@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence;
+package com.flab.ccinside.api.trendingpost.adapter.out.persistence.trendingpost;
 
 import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;

@@ -10,7 +10,7 @@ class TrendingPostMapper {
 
     return trendingPost.stream().map(
         m -> new TrendingPostData(
-            m.getPostNo(),
+            m.getTrendingPostNo(),
             m.getPostTitle(),
             m.getCommentCount(),
             m.getGalleryNo(),

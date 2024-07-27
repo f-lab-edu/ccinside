@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence;
+package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
 
 import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
 import jakarta.persistence.Column;
@@ -17,11 +17,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrendingPostEntity {
+public class PostEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Long postNo;
 
   @Column
   private String title;
@@ -43,5 +43,4 @@ public class TrendingPostEntity {
 
   @Column
   private LocalDateTime createdAt;
-
 }

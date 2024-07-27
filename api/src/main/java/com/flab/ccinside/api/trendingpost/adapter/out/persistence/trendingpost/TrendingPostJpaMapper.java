@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence;
+package com.flab.ccinside.api.trendingpost.adapter.out.persistence.trendingpost;
 
 import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
 import java.time.LocalDateTime;
@@ -10,7 +10,8 @@ class TrendingPostJpaMapper {
   List<TrendingPostEntity> mapToEntity(List<TrendingPost> trendingPosts) {
     return trendingPosts.stream()
                                 .map(m -> new TrendingPostEntity(
-                                    m.getPostNo(),
+                                    m.getTrendingPostNo(),
+                                    m.getTrendingPostNo(),
                                     m.getPostTitle(),
                                     m.getAuthorNo(),
                                     m.getGalleryNo(),
@@ -25,7 +26,8 @@ class TrendingPostJpaMapper {
   List<TrendingPost> mapToDomain(List<TrendingPostEntity> trendingPosts) {
     return trendingPosts.stream().map(
         m -> new TrendingPost(
-            m.getId(),
+            m.getTrendingPostNo(),
+            m.getPostNo(),
             m.getTitle(),
             m.getAuthorNo(),
             m.getGalleryNo(),
