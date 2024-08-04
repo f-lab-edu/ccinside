@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 class PostJpaMapper {
 
   Post map(PostEntity post) {
-    return new Post(post.getPostNo(), post.getTitle(), post.getAuthorNo(), post.getGalleryNo(), post.getPostViews(),
+    return new Post(post.getId(), post.getTitle(), post.getAuthorNo(), post.getGalleryNo(), post.getPostViews(),
         post.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME), post.getUnitTime()
     );
   }

@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS post
     author_no     BIGINT       NOT NULL,
     gallery_no    BIGINT       NOT NULL,
     post_views    INT          NOT NULL,
-    comment_count INT          NOT NULL,
     unit_time     VARCHAR(255) NOT NULL,
     created_at    Datetime     NOT NULL
 );

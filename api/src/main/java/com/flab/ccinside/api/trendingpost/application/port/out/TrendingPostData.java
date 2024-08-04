@@ -4,14 +4,14 @@ package com.flab.ccinside.api.trendingpost.application.port.out;
 import lombok.Builder;
 
 @Builder
-public record TrendingPostData(Long postNo, String postTitle, Long galleryNo,
+public record TrendingPostData(String postId, String postTitle, Long galleryNo,
                                String createdAt) {
 
-  public static TrendingPostData of(Long postNo, String postTitle, Long galleryNo,
+  public static TrendingPostData of(String postId, String postTitle, Long galleryNo,
                                     String createdAt) {
 
     return TrendingPostData.builder()
-                           .postNo(postNo)
+                           .postId(postId)
                            .postTitle(postTitle)
                            .galleryNo(galleryNo)
                            .createdAt(createdAt)
