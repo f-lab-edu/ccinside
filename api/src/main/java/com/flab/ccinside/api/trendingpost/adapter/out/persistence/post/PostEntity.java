@@ -13,35 +13,37 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Entity
-@Table(name = "post")
+@Document
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "post_no")
-  private Long postNo;
+  @GeneratedValue(generator = "system-uuid")
+  private String id;
 
   @Column
   private String title;
 
-  @Column(name = "author_no")
+  @Field(name = "author_no")
   private Long authorNo;
 
-  @Column(name = "gallery_no")
+  @Field(name = "gallery_no")
   private Long galleryNo;
 
-  @Column(name = "post_views")
+  @Field(name = "post_views")
   private Integer postViews;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "unit_time")
+  @Field(name = "unit_time")
   private UnitTime unitTime;
 
-  @Column(name = "created_at")
+  @Field(name = "created_at")
   private LocalDateTime createdAt;
 }

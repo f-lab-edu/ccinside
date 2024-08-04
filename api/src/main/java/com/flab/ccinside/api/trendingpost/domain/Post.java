@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Post {
 
   //TODO: Long 대신 PostNo로 PK 변경?
-  private Long postNo;
+  private String postNo;
   private String postTitle;
   private Long authorNo;
   private Long galleryNo;

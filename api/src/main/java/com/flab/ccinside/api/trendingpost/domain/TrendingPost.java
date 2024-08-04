@@ -15,8 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 public class TrendingPost {
 
-  private Long trendingPostNo;
-  private Long postNo;
+  private String id;
+  private String postId;
   private String postTitle;
   private Long authorNo;
   private Long galleryNo;

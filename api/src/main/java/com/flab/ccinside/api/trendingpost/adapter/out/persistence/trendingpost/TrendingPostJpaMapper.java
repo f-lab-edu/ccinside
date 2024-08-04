@@ -12,8 +12,8 @@ class TrendingPostJpaMapper {
   List<TrendingPostEntity> mapToEntity(List<TrendingPost> trendingPosts) {
     return trendingPosts.stream()
                                 .map(m -> new TrendingPostEntity(
-                                    m.getTrendingPostNo(),
-                                    m.getTrendingPostNo(),
+                                    m.getId(),
+                                    m.getPostId(),
                                     m.getPostTitle(),
                                     m.getAuthorNo(),
                                     m.getGalleryNo(),
@@ -27,8 +27,8 @@ class TrendingPostJpaMapper {
   List<TrendingPost> mapToDomain(List<TrendingPostEntity> trendingPosts) {
     return trendingPosts.stream().map(
         m -> new TrendingPost(
-            m.getTrendingPostNo(),
-            m.getPostNo(),
+            m.getId(),
+            m.getPostId(),
             m.getTitle(),
             m.getAuthorNo(),
             m.getGalleryNo(),

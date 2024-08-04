@@ -1,19 +1,32 @@
 version: '3.4'
 
 services:
-  mysql:
-    image: 'mysql:8.0'
-    environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=true
-      - MYSQL_USER=ccinside
-      - MYSQL_PASSWORD=1234
-      - MYSQL_DATABASE=ccinside_local
+#  mysql:
+#    image: 'mysql:8.0'
+#    environment:
+#      - MYSQL_RANDOM_ROOT_PASSWORD=true
+#      - MYSQL_USER=ccinside
+#      - MYSQL_PASSWORD=1234
+#      - MYSQL_DATABASE=ccinside_local
+#    ports:
+#      - "3307:3306"
+#    volumes:
+#      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#    networks:
+#      - ccinside
+  mongo:
+    image: mongo
+    container_name: ccinside-mongo
     ports:
-      - "3307:3306"
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ccinside_local
+      MONGO_INITDB_ROOT_USERNAME: ccinside
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    restart: always
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - ccinside
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./data:/data/db
 
 networks:
   ccinside:
