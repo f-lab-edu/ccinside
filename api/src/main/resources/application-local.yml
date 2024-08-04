@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/ccinside_local?characterEncoding=utf-8
+    username: ccinside
+    password: 1234
+    hikari:
+      maximum-pool-size: 2
+      idle-timeout: 30000

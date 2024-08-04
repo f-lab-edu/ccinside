@@ -4,7 +4,9 @@ import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
+@Component
 class TrendingPostJpaMapper {
 
   List<TrendingPostEntity> mapToEntity(List<TrendingPost> trendingPosts) {
@@ -16,7 +18,6 @@ class TrendingPostJpaMapper {
                                     m.getAuthorNo(),
                                     m.getGalleryNo(),
                                     m.getPostViews(),
-                                    m.getCommentCount(),
                                     m.getUnitTime(),
                                     LocalDateTime.parse(m.getCreatedAt(), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
                                 ))
@@ -32,7 +33,6 @@ class TrendingPostJpaMapper {
             m.getAuthorNo(),
             m.getGalleryNo(),
             m.getPostViews(),
-            m.getCommentCount(),
             m.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
             m.getUnitTime()
         )
