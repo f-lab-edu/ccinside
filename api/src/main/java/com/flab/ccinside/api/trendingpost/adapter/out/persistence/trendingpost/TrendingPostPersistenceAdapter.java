@@ -5,8 +5,10 @@ import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
 import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 
+@Component
 @RequiredArgsConstructor
 class TrendingPostPersistenceAdapter implements TrendingPostPort {
 

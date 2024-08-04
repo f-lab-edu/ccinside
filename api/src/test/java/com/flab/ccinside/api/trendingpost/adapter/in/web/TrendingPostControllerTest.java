@@ -1,6 +1,7 @@
 package com.flab.ccinside.api.trendingpost.adapter.in.web;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -8,10 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.flab.ccinside.api.trendingpost.application.port.in.TrendingPostUseCase;
-import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostData;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +16,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 class TrendingPostControllerTest {
@@ -33,22 +32,22 @@ class TrendingPostControllerTest {
   TrendingPostUseCase trendingPostUseCase;
 
   ObjectMapper mapper;
-  List<TrendingPostData> expectedPosts;
 
   @BeforeEach
   void setUp() {
     mapper = new ObjectMapper();
     mapper.registerModule(new JavaTimeModule());
-    expectedPosts = List.of(
-        new TrendingPostData(
-            1L, "title1", 10, 1L, "gallery1", LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME), "url1"),
-        new TrendingPostData(
-            2L, "title2", 20, 2L, "gallery2", LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME), "url2")
-    );
   }
 
   @Test
-  void publishNewTrendingPosts() {
+  void publishNewTrendingPosts() throws Exception {
+    //given
+
+    //when
+    ResultActions result = mockMvc.perform(post("/api/v1/trending/{galleryNo}/posts", 1));
+
+    //then
+    result.andExpect(status().isOk());
 
   }
 
@@ -57,7 +56,7 @@ class TrendingPostControllerTest {
     //given
 
     //when
-    ResultActions result = mockMvc.perform(get("/api/v1/trending/posts"));
+    ResultActions result = mockMvc.perform(get("/api/v1/trending/{galleryNo}/posts", 1));
 
     //then
     result.andExpect(status().isOk())

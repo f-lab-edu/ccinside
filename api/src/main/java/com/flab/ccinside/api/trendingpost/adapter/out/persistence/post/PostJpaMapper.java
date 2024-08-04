@@ -3,7 +3,9 @@ package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
 import com.flab.ccinside.api.trendingpost.domain.Post;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.springframework.stereotype.Component;
 
+@Component
 class PostJpaMapper {
 
   Post map(PostEntity post) {
