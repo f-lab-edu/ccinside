@@ -14,7 +14,6 @@ class TrendingPostMapper {
         m -> new TrendingPostData(
             m.getTrendingPostNo(),
             m.getPostTitle(),
-            m.getCommentCount(),
             m.getGalleryNo(),
             m.getCreatedAt()
         )).toList();
