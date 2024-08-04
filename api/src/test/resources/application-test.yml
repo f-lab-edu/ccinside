@@ -1,0 +1,34 @@
+spring:
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+
+  sql:
+    init:
+      mode: always
+      data-locations:
+        - classpath:db/h2/post.sql
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: debug
+    root: info
+  charset:
+    console: UTF-8
