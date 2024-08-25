@@ -12,4 +12,6 @@ public interface PostUseCase {
   PostData viewPostDetail(PostId postId);
 
   Page<PostData> viewPosts(Long galleryNo, Pageable pageable);
+
+  void addPostViewCount(PostId postId);
 }

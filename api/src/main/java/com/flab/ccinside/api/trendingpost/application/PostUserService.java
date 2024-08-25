@@ -4,6 +4,7 @@ import com.flab.ccinside.api.trendingpost.adapter.out.persistence.post.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
 import com.flab.ccinside.api.trendingpost.application.port.in.PostUseCase;
 import com.flab.ccinside.api.trendingpost.application.port.out.CreatePostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.HandlePostViewPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.LoadPostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
 import com.flab.ccinside.api.trendingpost.domain.Post;
@@ -23,6 +24,7 @@ public class PostUserService implements PostUseCase {
 
   private final CreatePostPort createPostPort;
   private final LoadPostPort loadPostPort;
+  private final HandlePostViewPort handlePostViewPort;
   private final PostMapper mapper;
 
   @Override
@@ -33,11 +35,21 @@ public class PostUserService implements PostUseCase {
 
   @Override
   public PostData viewPostDetail(PostId postId) {
-    return loadPostPort.loadPost(postId).map(mapper::map).orElseThrow(EntityNotFoundException::new);
+    handlePostViewPort.addViewCount(postId);
+    var viewCount = handlePostViewPort.getView(postId);
+    return loadPostPort.loadPost(postId).map(mapper::map).orElseThrow(EntityNotFoundException::new).toBuilder()
+                       .postViews(viewCount).build();
   }
 
   @Override
   public Page<PostData> viewPosts(Long galleryNo, Pageable pageable) {
     return loadPostPort.loadPostsWithPage(galleryNo, pageable).map(mapper::map);
+  }
+
+  @Override
+  public void addPostViewCount(PostId postId) {
+    Post post = loadPostPort.loadPost(postId).orElseThrow(EntityNotFoundException::new);
+
+    handlePostViewPort.addViewCount(post.getId());
   }
 }
