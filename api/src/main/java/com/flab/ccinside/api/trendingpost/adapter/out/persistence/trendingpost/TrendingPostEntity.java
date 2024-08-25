@@ -3,6 +3,8 @@ package com.flab.ccinside.api.trendingpost.adapter.out.persistence.trendingpost;
 import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,30 +23,32 @@ public class TrendingPostEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "trending_post_no")
   private Long trendingPostNo;
 
-  @Column
+  @Column(name = "post_no")
   private Long postNo;
 
   @Column
   private String title;
 
-  @Column
+  @Column(name = "author_no")
   private Long authorNo;
 
-  @Column
+  @Column(name = "gallery_no")
   private Long galleryNo;
 
-  @Column
+  @Column(name = "post_views")
   private Integer postViews;
 
-  @Column
+  @Column(name = "comment_count")
   private Integer commentCount;
 
-  @Column
+  @Enumerated(EnumType.STRING)
+  @Column(name = "unit_time")
   private UnitTime unitTime;
 
-  @Column
+  @Column(name = "created_at")
   private LocalDateTime createdAt;
 
 }
