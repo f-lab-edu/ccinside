@@ -33,7 +33,8 @@ public class PostUserController {
   }
 
   @GetMapping("/{galleryNo}/posts")
-  public Page<PostData> viewPosts(@PathVariable Long galleryNo, @PageableDefault Pageable pageable) {
+  public Page<PostData> viewPosts(
+      @PathVariable Long galleryNo, @PageableDefault Pageable pageable) {
     return postUseCase.viewPosts(galleryNo, pageable);
   }
 

@@ -10,5 +10,4 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, Long> {
   List<PostEntity> findByGalleryNo(Long galleryNo);
 
   Page<PostEntity> findByGalleryNo(Long galleryNo, Pageable pageable);
-
 }

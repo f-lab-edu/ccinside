@@ -8,7 +8,6 @@ import com.flab.ccinside.api.trendingpost.application.port.out.LoadPostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
 import com.flab.ccinside.api.trendingpost.domain.Post;
 import jakarta.persistence.EntityNotFoundException;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -34,14 +33,11 @@ public class PostUserService implements PostUseCase {
 
   @Override
   public PostData viewPostDetail(PostId postId) {
-    return loadPostPort.loadPost(postId)
-                       .map(mapper::map)
-                       .orElseThrow(EntityNotFoundException::new);
+    return loadPostPort.loadPost(postId).map(mapper::map).orElseThrow(EntityNotFoundException::new);
   }
 
   @Override
   public Page<PostData> viewPosts(Long galleryNo, Pageable pageable) {
-    return loadPostPort.loadPostsWithPage(galleryNo, pageable)
-                       .map(mapper::map);
+    return loadPostPort.loadPostsWithPage(galleryNo, pageable).map(mapper::map);
   }
 }

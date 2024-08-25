@@ -11,30 +11,32 @@ class TrendingPostJpaMapper {
 
   List<TrendingPostEntity> mapToEntity(List<TrendingPost> trendingPosts) {
     return trendingPosts.stream()
-                                .map(m -> new TrendingPostEntity(
-                                    m.getTrendingPostNo(),
-                                    m.getTrendingPostNo(),
-                                    m.getPostTitle(),
-                                    m.getAuthorNo(),
-                                    m.getGalleryNo(),
-                                    1, // view 수정..
-                                    m.getUnitTime(),
-                                    LocalDateTime.parse(m.getCreatedAt(), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-                                ))
-                                .toList();
+        .map(
+            m ->
+                new TrendingPostEntity(
+                    m.getTrendingPostNo(),
+                    m.getTrendingPostNo(),
+                    m.getPostTitle(),
+                    m.getAuthorNo(),
+                    m.getGalleryNo(),
+                    1, // view 수정..
+                    m.getUnitTime(),
+                    LocalDateTime.parse(m.getCreatedAt(), DateTimeFormatter.ISO_LOCAL_DATE_TIME)))
+        .toList();
   }
 
   List<TrendingPost> mapToDomain(List<TrendingPostEntity> trendingPosts) {
-    return trendingPosts.stream().map(
-        m -> new TrendingPost(
-            m.getTrendingPostNo(),
-            m.getPostNo(),
-            m.getTitle(),
-            m.getAuthorNo(),
-            m.getGalleryNo(),
-            m.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
-            m.getUnitTime()
-        )
-    ).toList();
+    return trendingPosts.stream()
+        .map(
+            m ->
+                new TrendingPost(
+                    m.getTrendingPostNo(),
+                    m.getPostNo(),
+                    m.getTitle(),
+                    m.getAuthorNo(),
+                    m.getGalleryNo(),
+                    m.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                    m.getUnitTime()))
+        .toList();
   }
 }

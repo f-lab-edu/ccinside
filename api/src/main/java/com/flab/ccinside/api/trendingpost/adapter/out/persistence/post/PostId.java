@@ -1,6 +1,5 @@
 package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
 
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import jakarta.validation.constraints.NotNull;
@@ -16,5 +15,4 @@ public record PostId(@NotNull @JsonValue Long value) implements Serializable {
   public static PostId from(@NotNull String value) {
     return new PostId(Long.valueOf(value));
   }
-
 }

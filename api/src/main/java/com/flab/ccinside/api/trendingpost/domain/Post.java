@@ -2,7 +2,6 @@ package com.flab.ccinside.api.trendingpost.domain;
 
 import com.flab.ccinside.api.trendingpost.adapter.out.persistence.post.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
@@ -28,5 +27,4 @@ public class Post {
     var createdAt = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     return new Post(null, command.title(), command.authorNo(), command.galleryNo(), createdAt);
   }
-
 }
