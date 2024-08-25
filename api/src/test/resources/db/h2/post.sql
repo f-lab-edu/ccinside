@@ -11,3 +11,4 @@ VALUES (1, 'Trending Post 1', 1, 1, 1000, 'ONE_HOUR', NOW()),
        (3, 'Trending Post 3', 3, 1, 3000, 'ONE_HOUR', NOW()),
        (4, 'Trending Post 4', 4, 1, 4000, 'ONE_HOUR', NOW()),
        (5, 'Trending Post 5', 5, 1, 5000, 'ONE_HOUR', NOW());
+       
