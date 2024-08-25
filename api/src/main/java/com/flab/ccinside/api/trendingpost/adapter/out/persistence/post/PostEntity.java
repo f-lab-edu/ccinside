@@ -23,8 +23,8 @@ public class PostEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "post_no")
-  private Long postNo;
+  @Column(name = "id")
+  private Long id;
 
   @Column
   private String title;
@@ -34,13 +34,6 @@ public class PostEntity {
 
   @Column(name = "gallery_no")
   private Long galleryNo;
-
-  @Column(name = "post_views")
-  private Integer postViews;
-
-  @Enumerated(EnumType.STRING)
-  @Column(name = "unit_time")
-  private UnitTime unitTime;
 
   @Column(name = "created_at")
   private LocalDateTime createdAt;

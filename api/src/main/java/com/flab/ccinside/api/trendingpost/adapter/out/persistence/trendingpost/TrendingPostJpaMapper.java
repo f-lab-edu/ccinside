@@ -17,7 +17,7 @@ class TrendingPostJpaMapper {
                                     m.getPostTitle(),
                                     m.getAuthorNo(),
                                     m.getGalleryNo(),
-                                    m.getPostViews(),
+                                    1, // view 수정..
                                     m.getUnitTime(),
                                     LocalDateTime.parse(m.getCreatedAt(), DateTimeFormatter.ISO_LOCAL_DATE_TIME)
                                 ))
@@ -32,7 +32,6 @@ class TrendingPostJpaMapper {
             m.getTitle(),
             m.getAuthorNo(),
             m.getGalleryNo(),
-            m.getPostViews(),
             m.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
             m.getUnitTime()
         )
