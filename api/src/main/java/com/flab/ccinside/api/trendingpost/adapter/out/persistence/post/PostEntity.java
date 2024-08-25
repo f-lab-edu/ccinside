@@ -38,9 +38,6 @@ public class PostEntity {
   @Column(name = "post_views")
   private Integer postViews;
 
-  @Column(name = "comment_count")
-  private Integer commentCount;
-
   @Enumerated(EnumType.STRING)
   @Column(name = "unit_time")
   private UnitTime unitTime;

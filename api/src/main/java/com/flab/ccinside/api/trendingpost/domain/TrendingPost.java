@@ -21,7 +21,6 @@ public class TrendingPost {
   private Long authorNo;
   private Long galleryNo;
   private Integer postViews;
-  private Integer commentCount;
   private String createdAt;
   private UnitTime unitTime;
 
@@ -44,7 +43,6 @@ public class TrendingPost {
                         m.getAuthorNo(),
                         m.getGalleryNo(),
                         m.getPostViews(),
-                        m.getCommentCount(),
                         m.getCreatedAt(),
                         unitTime
                     ))

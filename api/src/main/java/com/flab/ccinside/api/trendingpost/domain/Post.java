@@ -18,7 +18,6 @@ public class Post {
   private Long authorNo;
   private Long galleryNo;
   private Integer postViews;
-  private Integer commentCount;
   private String createdAt;
   private UnitTime unitTime;
 
