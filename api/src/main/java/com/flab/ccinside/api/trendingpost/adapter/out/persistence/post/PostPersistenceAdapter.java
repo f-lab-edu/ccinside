@@ -2,10 +2,12 @@ package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
 
 import com.flab.ccinside.api.trendingpost.application.port.out.CreatePostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.LoadPostPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
 import com.flab.ccinside.api.trendingpost.domain.Post;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,6 +18,11 @@ class PostPersistenceAdapter implements LoadPostPort, CreatePostPort {
   private final PostJpaMapper mapper;
 
   @Override
+  public Optional<Post> loadPost(PostId postId) {
+    return postRepository.findById(postId.value()).map(mapper::map);
+  }
+
+  @Override
   public List<Post> loadPosts(Long galleryNo) {
     var postEntities = postRepository.findByGalleryNo(galleryNo);
 
@@ -23,8 +30,8 @@ class PostPersistenceAdapter implements LoadPostPort, CreatePostPort {
   }
 
   @Override
-  public List<Post> loadPosts(Long galleryNo, UnitTime unitTime) {
-    return null;
+  public Page<Post> loadPostsWithPage(Long galleryNo, Pageable pageable) {
+    return postRepository.findByGalleryNo(galleryNo, pageable).map(mapper::map);
   }
 
   @Override
