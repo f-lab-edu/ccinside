@@ -2,8 +2,8 @@ package com.flab.ccinside.api.trendingpost.adapter.in.web;
 
 import com.flab.ccinside.api.trendingpost.application.port.in.PublishTrendingPostCommand;
 import com.flab.ccinside.api.trendingpost.application.port.in.TrendingPostUseCase;
-import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostData;
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.TrendingPostData;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.UnitTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

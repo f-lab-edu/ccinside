@@ -1,15 +1,14 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
+package com.flab.ccinside.api.trendingpost.adapter.out.post.persistence;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.CreatePostPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.HandlePostViewPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.LoadPostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.CreatePostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.LoadPostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.domain.Post;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 @Component

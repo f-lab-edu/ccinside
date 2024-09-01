@@ -1,7 +1,7 @@
 package com.flab.ccinside.api.trendingpost.application.port.in;
 
-import com.flab.ccinside.api.trendingpost.adapter.out.persistence.post.PostId;
-import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.PostData;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

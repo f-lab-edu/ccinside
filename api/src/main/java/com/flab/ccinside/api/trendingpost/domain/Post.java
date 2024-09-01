@@ -1,15 +1,12 @@
 package com.flab.ccinside.api.trendingpost.domain;
 
-import com.flab.ccinside.api.trendingpost.adapter.out.persistence.post.PostId;
-import com.flab.ccinside.api.trendingpost.application.port.in.AddPostViewCountCommand;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

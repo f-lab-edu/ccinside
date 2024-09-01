@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.trendingpost;
+package com.flab.ccinside.api.trendingpost.adapter.out.trendingpost.persistence;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
