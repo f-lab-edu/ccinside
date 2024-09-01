@@ -1,5 +1,8 @@
 package com.flab.ccinside.api.trendingpost.application.port.out;
 
+import lombok.Builder;
+
+@Builder(toBuilder = true)
 public record PostData(
     Long postNo,
     String postTitle,

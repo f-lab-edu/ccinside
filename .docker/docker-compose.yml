@@ -15,6 +15,14 @@ services:
     networks:
       - ccinside
 
+  redis:
+    image: 'redis:latest'
+    container_name: "ccinside-redis"
+    ports:
+      - "6381:6379"
+    networks:
+      - ccinside
+
 networks:
   ccinside:
     driver: bridge
