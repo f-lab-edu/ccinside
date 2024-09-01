@@ -1,8 +1,8 @@
 package com.flab.ccinside.api.trendingpost.application;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
 import com.flab.ccinside.api.trendingpost.application.port.in.PostUseCase;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.CreatePostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.HandlePostViewPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.LoadPostPort;
@@ -37,8 +37,13 @@ public class PostUserService implements PostUseCase {
   public PostData viewPostDetail(PostId postId) {
     handlePostViewPort.addViewCount(postId);
     var viewCount = handlePostViewPort.getView(postId);
-    return loadPostPort.loadPost(postId).map(mapper::map).orElseThrow(EntityNotFoundException::new).toBuilder()
-                       .postViews(viewCount).build();
+    return loadPostPort
+        .loadPost(postId)
+        .map(mapper::map)
+        .orElseThrow(EntityNotFoundException::new)
+        .toBuilder()
+        .postViews(viewCount)
+        .build();
   }
 
   @Override

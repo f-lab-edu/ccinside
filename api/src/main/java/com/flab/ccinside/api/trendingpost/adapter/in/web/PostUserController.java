@@ -1,8 +1,8 @@
 package com.flab.ccinside.api.trendingpost.adapter.in.web;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
 import com.flab.ccinside.api.trendingpost.application.port.in.PostUseCase;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.PostData;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

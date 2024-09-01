@@ -7,5 +7,4 @@ public interface HandlePostViewPort {
   void addViewCount(PostId postId);
 
   Integer getView(PostId postId);
-
 }

@@ -1,7 +1,7 @@
 package com.flab.ccinside.api.trendingpost.domain;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
