@@ -10,13 +10,11 @@ class TrendingPostMapper {
 
   public List<TrendingPostData> map(List<TrendingPost> trendingPost) {
 
-    return trendingPost.stream().map(
-        m -> new TrendingPostData(
-            m.getTrendingPostNo(),
-            m.getPostTitle(),
-            m.getGalleryNo(),
-            m.getCreatedAt()
-        )).toList();
+    return trendingPost.stream()
+        .map(
+            m ->
+                new TrendingPostData(
+                    m.getTrendingPostNo(), m.getPostTitle(), m.getGalleryNo(), m.getCreatedAt()))
+        .toList();
   }
-
 }

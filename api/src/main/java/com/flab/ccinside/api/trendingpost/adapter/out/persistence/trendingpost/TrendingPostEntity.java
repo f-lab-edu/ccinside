@@ -29,8 +29,7 @@ public class TrendingPostEntity {
   @Column(name = "post_no")
   private Long postNo;
 
-  @Column
-  private String title;
+  @Column private String title;
 
   @Column(name = "author_no")
   private Long authorNo;
@@ -47,5 +46,4 @@ public class TrendingPostEntity {
 
   @Column(name = "created_at")
   private LocalDateTime createdAt;
-
 }

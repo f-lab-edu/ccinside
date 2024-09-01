@@ -8,5 +8,4 @@ public interface TrendingPostPort {
   void publishTrendingPosts(List<TrendingPost> trendingPost);
 
   List<TrendingPost> getTrendingPosts(Long galleryNo, UnitTime unitTime);
-
 }

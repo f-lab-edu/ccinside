@@ -25,11 +25,9 @@ import org.springframework.test.web.servlet.ResultActions;
 @AutoConfigureMockMvc
 class TrendingPostControllerTest {
 
-  @Autowired
-  MockMvc mockMvc;
+  @Autowired MockMvc mockMvc;
 
-  @Autowired
-  TrendingPostUseCase trendingPostUseCase;
+  @Autowired TrendingPostUseCase trendingPostUseCase;
 
   ObjectMapper mapper;
 
@@ -41,30 +39,29 @@ class TrendingPostControllerTest {
 
   @Test
   void publishNewTrendingPosts() throws Exception {
-    //given
+    // given
 
-    //when
+    // when
     ResultActions result = mockMvc.perform(post("/api/v1/trending/{galleryNo}/posts", 1));
 
-    //then
+    // then
     result.andExpect(status().isOk());
-
   }
 
   @Test
   void getTrendingPosts() throws Exception {
-    //given
+    // given
 
-    //when
+    // when
     ResultActions result = mockMvc.perform(get("/api/v1/trending/{galleryNo}/posts", 1));
 
-    //then
-    result.andExpect(status().isOk())
-          .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-          .andExpect(jsonPath("$.length()").isNotEmpty());
+    // then
+    result
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.length()").isNotEmpty());
   }
 
   @Test
-  void updateTrendingPosts() {
-  }
+  void updateTrendingPosts() {}
 }

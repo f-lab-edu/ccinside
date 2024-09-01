@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import lombok.Value;
 
-//TODO: Validation 추가하기
+// TODO: Validation 추가하기
 @Value
 public class PublishTrendingPostCommand {
 

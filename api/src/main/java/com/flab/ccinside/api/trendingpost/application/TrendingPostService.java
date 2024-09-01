@@ -7,8 +7,6 @@ import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostData;
 import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
 import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,12 +35,8 @@ class TrendingPostService implements TrendingPostUseCase {
   }
 
   @Override
-  public void addOnePostIntoTrendingList(Long postNo) {
-
-  }
+  public void addOnePostIntoTrendingList(Long postNo) {}
 
   @Override
-  public void deleteTrendingPost(Long postNo) {
-
-  }
+  public void deleteTrendingPost(Long postNo) {}
 }

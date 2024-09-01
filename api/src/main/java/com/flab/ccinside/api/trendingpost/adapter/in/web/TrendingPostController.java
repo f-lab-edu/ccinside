@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -27,14 +26,16 @@ class TrendingPostController {
 
   @PostMapping("/{galleryNo}/posts")
   @ResponseStatus(HttpStatus.OK)
-  void publishNewTrendingPosts(@PathVariable Long galleryNo, @RequestParam(defaultValue = "ONE_HOUR") UnitTime unitTime) {
+  void publishNewTrendingPosts(
+      @PathVariable Long galleryNo, @RequestParam(defaultValue = "ONE_HOUR") UnitTime unitTime) {
     var command = PublishTrendingPostCommand.of(galleryNo, unitTime);
     trendingPostUseCase.publishNewTrendingPosts(command);
   }
 
   @GetMapping("/{galleryNo}/posts")
   @ResponseStatus(HttpStatus.OK)
-  List<TrendingPostData> getTrendingPosts(@PathVariable Long galleryNo, @RequestParam(defaultValue = "ONE_HOUR") UnitTime unitTime) {
+  List<TrendingPostData> getTrendingPosts(
+      @PathVariable Long galleryNo, @RequestParam(defaultValue = "ONE_HOUR") UnitTime unitTime) {
     return trendingPostUseCase.getTrendingPosts(galleryNo, unitTime);
   }
 
