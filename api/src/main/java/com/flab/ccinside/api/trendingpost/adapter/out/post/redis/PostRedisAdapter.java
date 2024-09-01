@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 public class PostRedisAdapter implements HandlePostViewPort {
 
   private final StringRedisTemplate redisTemplate;
-  private final BlockingQueue<Long> queue; // 패턴써서 카프카로 잘 바뀌게
-  private final ExecutorService executorService;
 
   @Override
   public void addViewCount(PostId postId) {
