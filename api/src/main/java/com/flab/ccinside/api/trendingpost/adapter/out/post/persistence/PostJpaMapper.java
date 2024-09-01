@@ -1,5 +1,6 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
+package com.flab.ccinside.api.trendingpost.adapter.out.post.persistence;
 
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.domain.Post;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.application.port.out;
+package com.flab.ccinside.api.trendingpost.application.port.out.trendingpost;
 
 public enum UnitTime {
   TEN_MINUTES,

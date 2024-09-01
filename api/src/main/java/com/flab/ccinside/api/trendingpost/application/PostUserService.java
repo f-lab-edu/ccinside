@@ -1,12 +1,12 @@
 package com.flab.ccinside.api.trendingpost.application;
 
-import com.flab.ccinside.api.trendingpost.adapter.out.persistence.post.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
 import com.flab.ccinside.api.trendingpost.application.port.in.PostUseCase;
-import com.flab.ccinside.api.trendingpost.application.port.out.CreatePostPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.HandlePostViewPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.LoadPostPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.CreatePostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.HandlePostViewPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.LoadPostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.PostData;
 import com.flab.ccinside.api.trendingpost.domain.Post;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +37,13 @@ public class PostUserService implements PostUseCase {
   public PostData viewPostDetail(PostId postId) {
     handlePostViewPort.addViewCount(postId);
     var viewCount = handlePostViewPort.getView(postId);
-    return loadPostPort.loadPost(postId).map(mapper::map).orElseThrow(EntityNotFoundException::new).toBuilder()
-                       .postViews(viewCount).build();
+    return loadPostPort
+        .loadPost(postId)
+        .map(mapper::map)
+        .orElseThrow(EntityNotFoundException::new)
+        .toBuilder()
+        .postViews(viewCount)
+        .build();
   }
 
   @Override

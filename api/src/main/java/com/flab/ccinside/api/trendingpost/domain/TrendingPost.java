@@ -1,6 +1,6 @@
 package com.flab.ccinside.api.trendingpost.domain;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.UnitTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;

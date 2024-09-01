@@ -2,10 +2,10 @@ package com.flab.ccinside.api.trendingpost.application;
 
 import com.flab.ccinside.api.trendingpost.application.port.in.PublishTrendingPostCommand;
 import com.flab.ccinside.api.trendingpost.application.port.in.TrendingPostUseCase;
-import com.flab.ccinside.api.trendingpost.application.port.out.LoadPostPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostData;
-import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.LoadPostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.TrendingPostData;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.TrendingPostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.UnitTime;
 import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

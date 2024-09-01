@@ -1,7 +1,7 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.trendingpost;
+package com.flab.ccinside.api.trendingpost.adapter.out.trendingpost.persistence;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.TrendingPostPort;
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.TrendingPostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.UnitTime;
 import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

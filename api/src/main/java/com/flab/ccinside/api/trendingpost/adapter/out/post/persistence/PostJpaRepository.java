@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
+package com.flab.ccinside.api.trendingpost.adapter.out.post.persistence;
 
 import java.util.List;
 import org.springframework.data.domain.Page;

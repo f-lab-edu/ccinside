@@ -1,6 +1,6 @@
 package com.flab.ccinside.api.trendingpost.application.port.in;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.UnitTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import lombok.Value;
