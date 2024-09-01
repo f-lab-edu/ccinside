@@ -13,6 +13,3 @@ spring:
       host: localhost
       port: 6381
       database: 1
-
-ccinside:
-  queue: memory

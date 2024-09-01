@@ -2,8 +2,6 @@ package com.flab.ccinside.api.trendingpost.adapter.out.post.redis;
 
 import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.HandlePostViewPort;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
