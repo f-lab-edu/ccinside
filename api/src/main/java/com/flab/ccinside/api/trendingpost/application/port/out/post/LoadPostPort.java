@@ -13,5 +13,7 @@ public interface LoadPostPort {
 
   List<Post> loadPosts(Long galleryNo);
 
+  List<Post> loadAllPosts();
+
   Page<Post> loadPostsWithPage(Long galleryNo, Pageable pageable);
 }

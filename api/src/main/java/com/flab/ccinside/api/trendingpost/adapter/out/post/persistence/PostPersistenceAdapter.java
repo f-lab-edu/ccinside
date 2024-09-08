@@ -3,6 +3,7 @@ package com.flab.ccinside.api.trendingpost.adapter.out.post.persistence;
 import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.CreatePostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.LoadPostPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.PersistPostViewPort;
 import com.flab.ccinside.api.trendingpost.domain.Post;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-class PostPersistenceAdapter implements LoadPostPort, CreatePostPort {
+class PostPersistenceAdapter implements LoadPostPort, CreatePostPort, PersistPostViewPort {
 
   private final PostJpaRepository postRepository;
   private final PostJpaMapper mapper;
@@ -31,6 +32,11 @@ class PostPersistenceAdapter implements LoadPostPort, CreatePostPort {
   }
 
   @Override
+  public List<Post> loadAllPosts() {
+    return postRepository.findAll().stream().map(mapper::map).toList();
+  }
+
+  @Override
   public Page<Post> loadPostsWithPage(Long galleryNo, Pageable pageable) {
     return postRepository.findByGalleryNo(galleryNo, pageable).map(mapper::map);
   }
@@ -39,5 +45,16 @@ class PostPersistenceAdapter implements LoadPostPort, CreatePostPort {
   public void createPost(Post post) {
     var postEntity = mapper.map(post);
     postRepository.save(postEntity);
+  }
+
+  @Override
+  public void modify(Post post) {
+    postRepository
+        .findById(post.getId().value())
+        .ifPresent(
+            entity -> {
+              entity = mapper.map(post);
+              postRepository.save(entity);
+            });
   }
 }

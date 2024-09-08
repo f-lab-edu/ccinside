@@ -38,10 +38,9 @@ public class PostUserService implements PostUserUseCase {
 
   @Override
   public PostData viewPostDetail(PostId postId) {
-    handlePostViewPort.addViewCount(postId);
-    var viewCount = handlePostViewPort.getView(postId);
-    var event = new ViewPostEvent(postId, viewCount);
+    var event = new ViewPostEvent(postId);
     publishAddViewCountPort.add(event);
+    var viewCount = handlePostViewPort.getView(postId);
     return loadPostPort
         .loadPost(postId)
         .map(mapper::map)
