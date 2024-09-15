@@ -2,6 +2,7 @@ package com.flab.ccinside.api.trendingpost.adapter.out.post.message;
 
 import com.flab.ccinside.api.trendingpost.application.port.ViewPostEvent;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.AsyncPublishAddViewCountPort;
+import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class InMemoryPostQueue implements AsyncPublishAddViewCountPort {
 
-  private final BlockingQueue<ViewPostEvent> queue;
+  private final Queue<ViewPostEvent> queue;
 
   @Override
   public void add(ViewPostEvent event) {
