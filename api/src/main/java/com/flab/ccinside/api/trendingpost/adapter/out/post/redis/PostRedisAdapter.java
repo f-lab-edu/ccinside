@@ -1,13 +1,14 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
+package com.flab.ccinside.api.trendingpost.adapter.out.post.redis;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.HandlePostViewPort;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.HandlePostViewPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PostViewAdapter implements HandlePostViewPort {
+public class PostRedisAdapter implements HandlePostViewPort {
 
   private final StringRedisTemplate redisTemplate;
 

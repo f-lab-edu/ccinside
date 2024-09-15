@@ -1,6 +1,6 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.trendingpost;
+package com.flab.ccinside.api.trendingpost.adapter.out.trendingpost.persistence;
 
-import com.flab.ccinside.api.trendingpost.application.port.out.UnitTime;
+import com.flab.ccinside.api.trendingpost.application.port.out.trendingpost.UnitTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -1,9 +1,9 @@
 package com.flab.ccinside.api.trendingpost.adapter.in.web;
 
-import com.flab.ccinside.api.trendingpost.adapter.out.persistence.post.PostId;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
-import com.flab.ccinside.api.trendingpost.application.port.in.PostUseCase;
-import com.flab.ccinside.api.trendingpost.application.port.out.PostData;
+import com.flab.ccinside.api.trendingpost.application.port.in.PostUserUseCase;
+import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.PostData;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PostUserController {
 
-  private final PostUseCase postUseCase;
+  private final PostUserUseCase postUseCase;
 
   @PostMapping("/{galleryNo}/posts")
   @ResponseStatus(HttpStatus.CREATED)

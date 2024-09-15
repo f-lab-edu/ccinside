@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.adapter.out.persistence.post;
+package com.flab.ccinside.api.trendingpost.adapter.out.post.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,6 +30,9 @@ public class PostEntity {
 
   @Column(name = "gallery_no")
   private Long galleryNo;
+
+  @Column(name = "view_count")
+  private Integer viewCount;
 
   @Column(name = "created_at")
   private LocalDateTime createdAt;

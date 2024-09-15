@@ -1,4 +1,4 @@
-package com.flab.ccinside.api.trendingpost.application.port.out;
+package com.flab.ccinside.api.trendingpost.application.port.out.trendingpost;
 
 import com.flab.ccinside.api.trendingpost.domain.TrendingPost;
 import java.util.List;
