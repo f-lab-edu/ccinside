@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PostJpaRepository extends JpaRepository<PostEntity, Long> {
+public interface PostJpaRepository extends JpaRepository<PostEntity, Long>, PostRepositorySupport {
 
   List<PostEntity> findByGalleryNo(Long galleryNo);
 

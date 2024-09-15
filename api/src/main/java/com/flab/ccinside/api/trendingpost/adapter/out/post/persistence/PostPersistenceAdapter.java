@@ -57,4 +57,10 @@ class PostPersistenceAdapter implements LoadPostPort, CreatePostPort, PersistPos
               postRepository.save(entity);
             });
   }
+
+  @Override
+  public void modifyInBatch(List<Post> posts) {
+    var postEntities = posts.stream().map(mapper::map).toList();
+    postRepository.saveAllByBatch(postEntities);
+  }
 }

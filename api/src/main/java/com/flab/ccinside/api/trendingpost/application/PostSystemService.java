@@ -6,9 +6,10 @@ import com.flab.ccinside.api.trendingpost.application.port.in.UpdateViewCountCom
 import com.flab.ccinside.api.trendingpost.application.port.out.post.HandlePostViewPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.LoadPostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.PersistPostViewPort;
+import com.flab.ccinside.api.trendingpost.exception.PostNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,17 +28,22 @@ public class PostSystemService implements PostSystemUsecase {
   }
 
   @Transactional
-  @Scheduled(fixedRate = 30000)
-  public void persistViewCounts() {
-    var allPosts = loadPostPort.loadAllPosts();
-    log.info("Posts view count persisted. size: {}", allPosts.size());
+  @Override
+  public void persistViewCountsInBatch(List<UpdateViewCountCommand> commands) {
+    var posts =
+        commands.stream()
+            .map(
+                command -> {
+                  var post =
+                      loadPostPort
+                          .loadPost(command.postId())
+                          .orElseThrow(PostNotFoundException::new);
+                  var view = handlePostViewPort.getView(command.postId());
+                  var postViewPersistCommand = new PostViewPersistCommand(view);
+                  return post.persistViewCount(postViewPersistCommand);
+                })
+            .toList();
 
-    allPosts.forEach(
-        post -> {
-          var view = handlePostViewPort.getView(post.getId());
-          var command = new PostViewPersistCommand(view);
-          var persistedPost = post.persistViewCount(command);
-          persistPostViewPort.modify(persistedPost);
-        });
+    persistPostViewPort.modifyInBatch(posts);
   }
 }
