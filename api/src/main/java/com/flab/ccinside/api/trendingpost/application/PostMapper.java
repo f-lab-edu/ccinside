@@ -5,7 +5,7 @@ import com.flab.ccinside.api.trendingpost.domain.Post;
 import org.springframework.stereotype.Component;
 
 @Component
-class PostMapper {
+public class PostMapper {
 
   PostData map(Post post) {
     return new PostData(

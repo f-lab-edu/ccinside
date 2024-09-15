@@ -1,8 +1,10 @@
 package com.flab.ccinside.api.trendingpost.application;
 
+import com.flab.ccinside.api.trendingpost.application.port.ViewPostEvent;
 import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand;
-import com.flab.ccinside.api.trendingpost.application.port.in.PostUseCase;
+import com.flab.ccinside.api.trendingpost.application.port.in.PostUserUseCase;
 import com.flab.ccinside.api.trendingpost.application.port.out.PostId;
+import com.flab.ccinside.api.trendingpost.application.port.out.post.AsyncPublishAddViewCountPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.CreatePostPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.HandlePostViewPort;
 import com.flab.ccinside.api.trendingpost.application.port.out.post.LoadPostPort;
@@ -18,16 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-@Transactional
 @RequiredArgsConstructor
-public class PostUserService implements PostUseCase {
+public class PostUserService implements PostUserUseCase {
 
   private final CreatePostPort createPostPort;
   private final LoadPostPort loadPostPort;
   private final HandlePostViewPort handlePostViewPort;
+  private final AsyncPublishAddViewCountPort publishAddViewCountPort;
   private final PostMapper mapper;
 
   @Override
+  @Transactional
   public void create(CreatePostCommand command) {
     var post = Post.createWithoutId(command);
     createPostPort.createPost(post);
@@ -35,7 +38,8 @@ public class PostUserService implements PostUseCase {
 
   @Override
   public PostData viewPostDetail(PostId postId) {
-    handlePostViewPort.addViewCount(postId);
+    var event = new ViewPostEvent(postId);
+    publishAddViewCountPort.add(event);
     var viewCount = handlePostViewPort.getView(postId);
     return loadPostPort
         .loadPost(postId)
@@ -49,12 +53,5 @@ public class PostUserService implements PostUseCase {
   @Override
   public Page<PostData> viewPosts(Long galleryNo, Pageable pageable) {
     return loadPostPort.loadPostsWithPage(galleryNo, pageable).map(mapper::map);
-  }
-
-  @Override
-  public void addPostViewCount(PostId postId) {
-    Post post = loadPostPort.loadPost(postId).orElseThrow(EntityNotFoundException::new);
-
-    handlePostViewPort.addViewCount(post.getId());
   }
 }

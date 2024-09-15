@@ -16,6 +16,7 @@ class PostJpaMapper {
         post.getTitle(),
         post.getAuthorNo(),
         post.getGalleryNo(),
+        post.getViewCount(),
         post.getCreatedAt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
   }
 
@@ -25,6 +26,7 @@ class PostJpaMapper {
         post.getPostTitle(),
         post.getAuthorNo(),
         post.getGalleryNo(),
+        post.getViewCount(),
         LocalDateTime.parse(post.getCreatedAt(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
   }
 }

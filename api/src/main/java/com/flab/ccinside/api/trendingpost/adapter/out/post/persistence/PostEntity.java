@@ -31,6 +31,9 @@ public class PostEntity {
   @Column(name = "gallery_no")
   private Long galleryNo;
 
+  @Column(name = "view_count")
+  private Integer viewCount;
+
   @Column(name = "created_at")
   private LocalDateTime createdAt;
 }
