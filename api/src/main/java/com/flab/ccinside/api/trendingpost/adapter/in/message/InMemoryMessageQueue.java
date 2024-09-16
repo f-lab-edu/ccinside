@@ -6,7 +6,6 @@ import com.flab.ccinside.api.trendingpost.application.port.in.UpdateViewCountCom
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +15,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class InMemoryMessageQueue {
 
-  public InMemoryMessageQueue(PostSystemUsecase postSystemUsecase, Queue<ViewPostEvent> queue) {
-    ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+  public InMemoryMessageQueue(
+      PostSystemUsecase postSystemUsecase,
+      Queue<ViewPostEvent> queue,
+      ScheduledExecutorService executorService) {
 
     executorService.scheduleWithFixedDelay(
         () -> {

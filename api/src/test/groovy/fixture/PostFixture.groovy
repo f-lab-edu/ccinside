@@ -7,5 +7,5 @@ import java.time.format.DateTimeFormatter
 
 class PostFixture {
 
-    static final Post POST = new Post(PostId.from(1L), "test post title", 1L, 1L, LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+    static final Post POST = new Post(PostId.from(1L), "test post title", 1L, 1L, 0, LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
 }
