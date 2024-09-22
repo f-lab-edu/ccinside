@@ -25,10 +25,14 @@ public class InMemoryMessageQueue {
       ScheduledExecutorService executorService) {
 
     executorService.scheduleWithFixedDelay(
-        createEventConsumerRunnable(postSystemUsecase, queue), INITIAL_DELAY, FIXED_DELAY, TimeUnit.MILLISECONDS);
+        createEventConsumerRunnable(postSystemUsecase, queue),
+        INITIAL_DELAY,
+        FIXED_DELAY,
+        TimeUnit.MILLISECONDS);
   }
 
-  private Runnable createEventConsumerRunnable(PostSystemUsecase postSystemUsecase, Queue<ViewPostEvent> queue) {
+  private Runnable createEventConsumerRunnable(
+      PostSystemUsecase postSystemUsecase, Queue<ViewPostEvent> queue) {
     return () -> {
       try {
         List<UpdateViewCountCommand> commands = new ArrayList<>();
