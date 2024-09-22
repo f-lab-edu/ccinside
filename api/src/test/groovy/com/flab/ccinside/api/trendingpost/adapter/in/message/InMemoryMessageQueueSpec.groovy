@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+
 @ContextConfiguration(classes = [InMemoryMessageQueue, InMemoryQueueConfig])
 class InMemoryMessageQueueSpec extends Specification {
 
@@ -41,4 +42,37 @@ class InMemoryMessageQueueSpec extends Specification {
         1 * postSystemUsecase.updateViewCount({it == new UpdateViewCountCommand(PostId.from(1L))})
         1 * postSystemUsecase.persistViewCountsInBatch({it == List.of(new UpdateViewCountCommand(PostId.from(1L)))})
     }
+
+    def "executorService 실제 동작 여부 - 정상" () {
+        when:
+        def inMemoryMessageQueue = new InMemoryMessageQueue(postSystemUsecase, queue, executorService)
+
+        then:
+        1 * executorService.scheduleWithFixedDelay(_, 10L, 100L, TimeUnit.MILLISECONDS)
+
+    }
+
+    def "임계치를 초과하는 이벤트 처리 테스트 - 정상"() {
+        given:
+        int eventCount = 101
+        (0..eventCount).each { i ->
+            queue.add(new ViewPostEvent(PostId.from(i)))
+        }
+
+        executorService.scheduleWithFixedDelay(_, _, _, _) >> { Runnable runnable, long l1, long l2, TimeUnit unit ->
+            runnable.run()
+        }
+
+        when:
+        def inMemoryMessageQueue = new InMemoryMessageQueue(postSystemUsecase, queue, executorService)
+
+        then:
+        100 * postSystemUsecase.updateViewCount(_)
+        1 * postSystemUsecase.persistViewCountsInBatch({ commands ->
+            commands.size() == 100
+        })
+
+        queue.size() == 1
+    }
+
 }

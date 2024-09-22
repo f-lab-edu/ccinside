@@ -15,29 +15,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class InMemoryMessageQueue {
 
+  private static final Long INITIAL_DELAY = 10L;
+  private static final Long FIXED_DELAY = 100L;
+  private static final int THRESHOLD = 100;
+
   public InMemoryMessageQueue(
       PostSystemUsecase postSystemUsecase,
       Queue<ViewPostEvent> queue,
       ScheduledExecutorService executorService) {
 
     executorService.scheduleWithFixedDelay(
-        () -> {
-          try {
-            List<UpdateViewCountCommand> commands = new ArrayList<>();
-            ViewPostEvent event;
-            while ((event = queue.poll()) != null) {
-              log.info("View post event consumed. postId: {}", event.postId());
-              var command = new UpdateViewCountCommand(event.postId());
-              postSystemUsecase.updateViewCount(command);
-              commands.add(command);
-            }
-            postSystemUsecase.persistViewCountsInBatch(commands);
-          } catch (Exception e) {
-            log.error("error: {}", e.getMessage());
-          }
-        },
-        10,
-        100,
-        TimeUnit.MILLISECONDS);
+        createEventConsumerRunnable(postSystemUsecase, queue), INITIAL_DELAY, FIXED_DELAY, TimeUnit.MILLISECONDS);
+  }
+
+  private Runnable createEventConsumerRunnable(PostSystemUsecase postSystemUsecase, Queue<ViewPostEvent> queue) {
+    return () -> {
+      try {
+        List<UpdateViewCountCommand> commands = new ArrayList<>();
+        ViewPostEvent event;
+        int count = 0;
+        while ((event = queue.poll()) != null && count < THRESHOLD) {
+          log.info("View post event consumed. postId: {}", event.postId());
+          var command = new UpdateViewCountCommand(event.postId());
+          postSystemUsecase.updateViewCount(command);
+          commands.add(command);
+          count++;
+        }
+        postSystemUsecase.persistViewCountsInBatch(commands);
+      } catch (Exception e) {
+        log.error("error: {}", e.getMessage());
+      }
+    };
   }
 }
