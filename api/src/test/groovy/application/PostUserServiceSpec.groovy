@@ -2,6 +2,7 @@ package application
 
 import com.flab.ccinside.api.trendingpost.application.PostMapper
 import com.flab.ccinside.api.trendingpost.application.PostUserService
+import com.flab.ccinside.api.trendingpost.application.port.in.CreatePostCommand
 import com.flab.ccinside.api.trendingpost.application.port.out.PostId
 import com.flab.ccinside.api.trendingpost.application.port.out.post.AsyncPublishAddViewCountPort
 import com.flab.ccinside.api.trendingpost.application.port.out.post.CreatePostPort
@@ -30,8 +31,6 @@ class PostUserServiceSpec extends Specification {
     @SpringBean
     AsyncPublishAddViewCountPort publishAddViewCountPort = Mock()
 
-
-
     def "게시글 조회시, 조회 이벤트 발행 - 정상"() {
         given:
         var event = ViewPostEventFixture.VIEW_POSE_EVENT
@@ -42,9 +41,27 @@ class PostUserServiceSpec extends Specification {
         def got = postUserService.viewPostDetail(PostId.from(1L));
 
         then:
-        1 * publishAddViewCountPort.add({it == event})
+        1 * publishAddViewCountPort.add({ it == event })
         got.postTitle() == "test post title"
         got.authorNo() == 1L
         got.postNo() == 1L
+    }
+
+    def "게시글 생성 - 정상"() {
+        given:
+        def post = PostFixture.POST
+        var command = new CreatePostCommand(post.getPostTitle(), post.getAuthorNo(), post.getGalleryNo(), post.getViewCount())
+
+        when:
+        postUserService.create(command)
+
+        then:
+        1 * createPostPort.createPost({
+            it.postTitle == post.getPostTitle()
+            it.authorNo == post.getAuthorNo()
+            it.galleryNo == post.getGalleryNo()
+            it.viewCount == post.viewCount
+        })
+
     }
 }
